@@ -17,16 +17,16 @@ In a terminal with the GNU Compiler Collection installed,
 just run 'make' in the current directory to compile the
 code with the included Makefile.
 
-Call: ./calsim partitionsfile outfile  
+Call: ./partitionssim partitionsfile outfile  
 partitionmatrix: Each column corresponds to a partition and each row corresponds to a node id.   
 outfile: partitionID1 partitionID2 similarity
 
 
 Example:
 
-./calcsim partitionmatrix.txt similarities.txt
+./partitionssim partitiosnmatrix.txt similarities.txt
 
-partitionmatrix.txt   
+partitionsmatrix.txt   
 1 1 1 1 1 1 1 1 1 1 1  
 1 1 1 1 1 1 1 1 1 1 1  
 1 2 1 2 1 2 1 2 1 2 2  
