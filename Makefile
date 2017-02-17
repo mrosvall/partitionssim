@@ -1,9 +1,9 @@
 # Various flags
 
-CXX  = g++-5
+CXX  = g++
 LINK = $(CXX)
 #CXXFLAGS = -Wall -g 
-CXXFLAGS = -std=c++11 -Wall -O3 -fopenmp
+CXXFLAGS = -std=c++98 -Wall -O3 -fopenmp
 LFLAGS = -lm -fopenmp
 
 
