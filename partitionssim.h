@@ -10,7 +10,7 @@
 #include <vector>
 #include <random>
 #include <algorithm>
-// #include <unordered_map>
+#include <unordered_map>
 #include <map>
 #include <set>
 using namespace std;
@@ -32,14 +32,14 @@ struct my_ofstream : ofstream {
 
 unsigned stou(char *s);
 
-// struct pairhash {
-// public:
-//   template <typename T, typename U>
-//   size_t operator()(const pair<T, U> &x) const
-//   {
-//     return x.first*31 + x.second;
-//   }
-// };
+struct pairhash {
+public:
+  template <typename T, typename U>
+  size_t operator()(const pair<T, U> &x) const
+  {
+    return x.first*31 + x.second;
+  }
+};
 
 template <class T>
 inline std::string to_string (const T& t){
@@ -150,7 +150,7 @@ void readPartitionsFile(vector<vector<int > > &partitions,string partitionsFileN
 
 void calcWJaccard(vector<vector<int > > &partitions,string outFileName,int &Nnodes,int &Npartitions){
 
-  vector<map<int,int> > clusterSizes(Npartitions);
+  vector<unordered_map<int,int> > clusterSizes(Npartitions);
   for(int i=0;i<Npartitions;i++){
     for(int k=0;k<Nnodes;k++){
       clusterSizes[i][partitions[i][k]]++;
@@ -165,14 +165,12 @@ void calcWJaccard(vector<vector<int > > &partitions,string outFileName,int &Nnod
   for(int i=0;i<Npartitions;i++){
 
     for(int j=i+1;j<Npartitions;j++){
-      // unordered_map<pair<int,int>,int,pairhash> jointM;
-      map<pair<int,int>,int> jointM;
+      unordered_map<pair<int,int>,int,pairhash> jointM;
       for(int k=0;k<Nnodes;k++){
         jointM[make_pair(partitions[i][k],partitions[j][k])]++;
       }
       double sim = 0.0;
-      // for(unordered_map<pair<int,int>,int,pairhash>::iterator it = jointM.begin(); it != jointM.end(); it++){
-      for(map<pair<int,int>,int>::iterator it = jointM.begin(); it != jointM.end(); it++){
+      for(unordered_map<pair<int,int>,int,pairhash>::iterator it = jointM.begin(); it != jointM.end(); it++){
         int Ncommon = it->second;
         int Ntotal = clusterSizes[i][it->first.first] + clusterSizes[j][it->first.second] - Ncommon;
         sim += 1.0*Ncommon*Ncommon/(Nnodes*Ntotal);
