@@ -1,10 +1,10 @@
 # Various flags
 
-CXX  = g++
+CXX  = g++-5
 LINK = $(CXX)
 #CXXFLAGS = -Wall -g 
-CXXFLAGS = -std=c++11 -Wall -O3 -funroll-loops -pipe
-LFLAGS = -lm
+CXXFLAGS = -std=c++11 -Wall -O3 -fopenmp
+LFLAGS = -lm -fopenmp
 
 
 TARGET  = partitionssim

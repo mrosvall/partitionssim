@@ -17,14 +17,16 @@ In a terminal with the GNU Compiler Collection installed,
 just run 'make' in the current directory to compile the
 code with the included Makefile.
 
-Call: ./partitionssim partitionsfile outfile  
+Call: ./partitionssim partitionsfile outfile [--skiplines N] [-h] 
 partitionmatrix: Each column corresponds to a partition and each row corresponds to a node id.   
 outfile: partitionID1 partitionID2 similarity
+--skiplines N: Skip N lines in partitionmatrix before reading data in
+-h: This help
 
 
 Example:
 
-./partitionssim partitiosnmatrix.txt similarities.txt
+./partitionssim partitiosnmatrix.txt similarities.txt  
 
 partitionsmatrix.txt   
 1 1 1 1 1 1 1 1 1 1 1  
